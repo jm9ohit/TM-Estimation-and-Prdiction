@@ -1,0 +1,17 @@
+def fit_arima_and_predict(data, p, d, q, steps):
+    model = ARIMA(data, order=(p, d, q))
+    model_fit = model.fit()
+    forecast = model_fit.forecast(steps=steps)
+    return forecast
+
+p, d, q = 2, 1, 2  # Example parameters, you might want to optimize these
+
+forecast_steps = 10  # Number of steps to predict
+predictions = {}
+
+for path in df.columns:
+    print(f"Fitting ARIMA for {path}...")
+    predictions[path] = fit_arima_and_predict(df[path], p, d, q, forecast_steps)
+
+pred_df = pd.DataFrame(predictions, index=pd.date_range(start=df.index[-1] + pd.Timedelta(minutes=10), periods=forecast_steps, freq='10T'))
+print(pred_df)
