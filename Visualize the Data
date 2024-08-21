@@ -1,0 +1,5 @@
+df.plot(figsize=(10, 6))
+plt.title('Network Traffic Over Time')
+plt.xlabel('Timestamp')
+plt.ylabel('Traffic (Mbps)')
+plt.show()
